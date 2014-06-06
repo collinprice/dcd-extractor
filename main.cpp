@@ -128,8 +128,14 @@ int main(int argc, char **argv) {
 		oss << output_directory_s << "/" << (i+1) << ".xyz";
 		std::ofstream xyz_file(oss.str().c_str());
 
+		// Number of atoms
+		xyz_file << frame.size() << std::endl;
+
+		// Comment line
+		xyz_file << std::endl;
+
 		for (std::vector<PDBAtom>::iterator atom = frame.begin(); atom != frame.end(); ++atom) {
-			xyz_file << std::setprecision(15) << atom->x << "," << atom->y << "," << atom->z << std::endl;
+			xyz_file << std::setprecision(15) << "H " << atom->x << " " << atom->y << " " << atom->z << std::endl;
 		}
 
 		xyz_file.close();
